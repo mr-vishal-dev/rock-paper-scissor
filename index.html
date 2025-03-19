@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            background: url(background.avif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        #comans{
+            text-align: center;
+            margin: 100px;
+            margin-bottom: 5px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 30px;
+            animation-name: entry;
+            animation-duration: 2s;
+        }
+        @keyframes entry {
+            from{
+                margin-top: -400px
+            }
+        }
+        #livescore{
+            text-align: center;
+            margin: 100px;
+            margin-top: 5px;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        #score{
+            text-align: right;
+            margin: 10px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-style: italic;
+            visibility: hidden;
+            animation-name: buttonentry;
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: forwards;
+
+        }
+        button{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding: 5px 10px;
+            background-color: transparent;
+            border-radius: 5px;
+            visibility: hidden;
+            animation-name: buttonentry;
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes buttonentry {
+            from{
+                transform: scale(0);
+            }
+            to{
+                visibility: visible;
+            }
+        }
+        button:hover{
+            background-color: rgba(255, 253, 253, 0.354);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="score" >
+            <label for="" style="background-color: rgba(239, 239, 239, 0.502);padding: 5px;">Live score = 0</label>
+        </div>
+        <div id="comans">
+            <label for="">LET'S START THE BATTLE</label>
+        </div>
+        <div id="livescore">
+            <label for="">USER VS COMPUTER</label>
+        </div>
+        <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;justify-self: center;gap: 20px;">
+            <div>
+                <button type="submit" id="rock" onclick="game1()" value="2">Rock</button>
+            </div>
+            <div>
+                <button type="submit" id="paper"  onclick="game2()" value="5">Paper</button>
+            </div>
+            <div>
+                <button type="submit" id="scissor" onclick="game3()" value="8">Scissor</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var scoree=document.getElementById('score');
+        score=0;
+        function game1(){
+            let userselect=document.getElementById('rock');
+
+            var comans=document.getElementById('comans');
+            var livescore=document.getElementById('livescore');
+
+            var computerinput=Math.floor(Math.random()*10);
+
+            if(computerinput<=3)
+            {
+                computerinput=2;
+                
+                if(userselect.value==computerinput){
+                    comans.textContent='Aswer is rock';
+                    livescore.textContent='draw';
+                    score=score;
+                }
+            }
+            if(computerinput>=4 && computerinput<=6)
+            {
+                computerinput=5;
+                comans.textContent='Answer is paper';
+                livescore.textContent='-1 point';
+                score-=1;
+                
+            }
+            if(computerinput>=7 && computerinput<=9)
+            {
+                computerinput=8;
+                comans.textContent='Hurrey! Answer is scissor';
+                livescore.textContent='+1 point';
+                score+=1;
+                
+            }
+            if(score<0){
+                score=0;
+            }
+            if(score==5){
+                alert('you won the Battle')
+                score=0;
+                comans.textContent='YOU WON';
+                livescore.innerHTML="click to restart";
+            }
+            scoree.textContent='Live score = '+score;
+           
+        }
+        function game2(){
+            let userselect=document.getElementById('paper');
+
+            var comans=document.getElementById('comans');
+            var livescore=document.getElementById('livescore');
+
+            var computerinput=Math.floor(Math.random()*10);
+
+            if(computerinput<=3)
+            {
+                computerinput=2;
+                comans.textContent='Hurrey! Answer is rock';
+                livescore.textContent='+1 point';
+                score+=1;
+            }
+            if(computerinput>=4 && computerinput<=6)
+            {
+                computerinput=5;
+                if(userselect.value==computerinput){
+                    comans.textContent='Answer is paper';
+                    livescore.textContent='Draw';
+                    score=score;
+                   
+                }
+                
+            }
+            if(computerinput>=7 && computerinput<=9)
+            {
+                computerinput=8;
+                comans.textContent='Answer is scissor';
+                livescore.textContent='-1 point';
+                score-=1;
+            }
+            if(score<0){
+                score=0;
+            }
+            if(score==5){
+                alert('you won the Battle')
+                score=0;
+                comans.textContent='YOU WON';
+                livescore.innerHTML="click to restart";
+
+            }
+            scoree.textContent='Live score = '+score;
+
+        }
+        function game3(){
+            let userselect=document.getElementById('scissor');
+            
+            var comans=document.getElementById('comans');
+            var livescore=document.getElementById('livescore');
+
+            var computerinput=Math.floor(Math.random()*10);
+
+            if(computerinput<=3)
+            {
+                computerinput=2;
+                comans.textContent='Answer is rock';
+                livescore.textContent='-1 point';
+                score-=1;
+            }
+            if(computerinput>=4 && computerinput<=6)
+            {
+                computerinput=5;
+                comans.textContent='Hurrey! Answer is paper';
+                livescore.textContent='+1 point';
+                score+=1;
+                
+            }
+            if(computerinput>=7 && computerinput<=9)
+            {
+                computerinput=8;
+                if(userselect.value==computerinput){
+                    comans.textContent='Answer is scissor';
+                    livescore.textContent='Draw';
+                    score=score;  
+                }
+            }
+            if(score<0){
+                score=0;
+            }
+            if(score==5){
+            alert('you won the Battle')
+            score=0;
+            comans.textContent='YOU WON';
+            livescore.innerHTML="click to restart";
+            }
+            scoree.textContent='Live score = '+score;
+
+        }
+</script>
+</body>
+</html>
